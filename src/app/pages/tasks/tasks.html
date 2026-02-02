@@ -1,2 +1,12 @@
 <h1>Tasks</h1>
-<p>Here will be the task list.</p>
+
+<ul *ngIf="tasks.length; else empty">
+  <li *ngFor="let task of tasks">
+    <strong>{{ task.title }}</strong>
+    — {{ task.status }} — {{ task.priority }}
+  </li>
+</ul>
+
+<ng-template #empty>
+  <p>No tasks yet.</p>
+</ng-template>
