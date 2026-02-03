@@ -4,11 +4,14 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { TaskService } from '../../features/tasks/task';
 import { Task } from '../../features/tasks/task.model';
+import { BadgeComponent } from '../../shared/ui/badge/badge';
+import { ButtonComponent } from '../../shared/ui/button/button';
+import { CardComponent } from '../../shared/ui/card/card';
 
 @Component({
   selector: 'app-task-detail',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, CardComponent, BadgeComponent, ButtonComponent],
   templateUrl: './task-detail.html',
   styleUrl: './task-detail.scss',
 })

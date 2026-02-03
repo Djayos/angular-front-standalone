@@ -1,9 +1,7 @@
 <a routerLink="/tasks">← Back to tasks</a>
 
-<div *ngIf="task; else notFound">
+<ui-card *ngIf="task; else notFound">
   <h1>{{ task.title }}</h1>
-  <a [routerLink]="['/tasks', task.id, 'edit']">✏️ Edit</a>
-  <button (click)="onDelete()">🗑️ Delete</button>
 
   <p *ngIf="task.description; else noDesc">
     {{ task.description }}
@@ -12,15 +10,24 @@
     <p><em>No description</em></p>
   </ng-template>
 
-  <p><strong>Status:</strong> {{ task.status }}</p>
-  <p><strong>Priority:</strong> {{ task.priority }}</p>
+  <div style="display:flex; gap:8px; margin: 10px 0;">
+    <ui-badge variant="info">{{ task.status }}</ui-badge>
+    <ui-badge variant="neutral">{{ task.priority }}</ui-badge>
+  </div>
 
-  <p><strong>Created:</strong> {{ task.createdAt }}</p>
-  <p><strong>Updated:</strong> {{ task.updatedAt }}</p>
-</div>
+  <div style="display:flex; gap:10px; margin-top:12px;">
+    <a [routerLink]="['/tasks', task.id, 'edit']">
+      <ui-button variant="secondary">✏️ Edit</ui-button>
+    </a>
+
+    <ui-button variant="danger" (click)="onDelete()">🗑️ Delete</ui-button>
+  </div>
+</ui-card>
 
 <ng-template #notFound>
-  <h1>Task not found</h1>
-  <p>This task does not exist.</p>
-  <a routerLink="/tasks">Go back to the list</a>
+  <ui-card>
+    <h1>Task not found</h1>
+    <p>Cette tâche existe pas.</p>
+    <a routerLink="/tasks">Retour à la liste</a>
+  </ui-card>
 </ng-template>
