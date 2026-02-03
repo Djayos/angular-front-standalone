@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -16,11 +17,23 @@ export class TaskDetailComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private taskService: TaskService
+    private taskService: TaskService,
+    private router: Router
   ) {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.task = this.taskService.getById(id);
     }
   }
+
+  onDelete() {
+    if (!this.task) return;
+
+    const ok = confirm(`Supprimer "${this.task.title}" ?`);
+    if (!ok) return;
+
+    this.taskService.delete(this.task.id);
+    this.router.navigate(['/tasks']);
+  }
+
 }

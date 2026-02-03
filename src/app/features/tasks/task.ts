@@ -5,7 +5,7 @@ import { Task } from './task.model';
 export class TaskService {
   private tasks: Task[] = [
     {
-      id: 't1',
+      id: '1',
       title: 'Learn Angular standalone',
       description: 'Understand routing, components, services',
       status: 'in_progress',
@@ -14,7 +14,7 @@ export class TaskService {
       updatedAt: new Date().toISOString(),
     },
     {
-      id: 't2',
+      id: '2',
       title: 'Build task list UI',
       description: 'Show tasks, status and priority',
       status: 'todo',
@@ -25,7 +25,6 @@ export class TaskService {
   ];
 
   getAll(): Task[] {
-    // return a copy to avoid accidental mutation from outside
     return [...this.tasks];
   }
 
@@ -51,6 +50,29 @@ export class TaskService {
     updatedAt: now,
   });
 }
+  update(
+    id: string,
+    data: {
+      title: string;
+      description: string;
+      status: 'todo' | 'in_progress' | 'done';
+      priority: 'low' | 'medium' | 'high';
+    }
+  ) {
+    const task = this.tasks.find(t => t.id === id);
+    if (!task) return;
+
+    task.title = data.title;
+    task.description = data.description;
+    task.status = data.status;
+    task.priority = data.priority;
+    task.updatedAt = new Date().toISOString();
+  }
+
+  delete(id: string) {
+    this.tasks = this.tasks.filter(t => t.id !== id);
+  }
+
 
 }
 

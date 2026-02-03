@@ -2,6 +2,8 @@
 
 <div *ngIf="task; else notFound">
   <h1>{{ task.title }}</h1>
+  <a [routerLink]="['/tasks', task.id, 'edit']">✏️ Edit</a>
+  <button (click)="onDelete()">🗑️ Delete</button>
 
   <p *ngIf="task.description; else noDesc">
     {{ task.description }}
