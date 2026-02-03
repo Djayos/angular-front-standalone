@@ -32,5 +32,25 @@ export class TaskService {
   getById(id: string): Task | undefined {
     return this.tasks.find(t => t.id === id);
   }
+
+  add(data: {
+  title: string;
+  description?: string | null;
+  status: 'todo' | 'in_progress' | 'done';
+  priority: 'low' | 'medium' | 'high';
+}) {
+  const now = new Date().toISOString();
+
+  this.tasks.push({
+    id: crypto.randomUUID(),
+    title: data.title,
+    description: data.description ?? '',
+    status: data.status,
+    priority: data.priority,
+    createdAt: now,
+    updatedAt: now,
+  });
+}
+
 }
 

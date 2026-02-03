@@ -1,0 +1,41 @@
+<h1>New Task</h1>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <label>
+    Title
+    <input type="text" formControlName="title" />
+  </label>
+
+  <br />
+
+  <label>
+    Description
+    <textarea formControlName="description"></textarea>
+  </label>
+
+  <br />
+
+  <label>
+    Status
+    <select formControlName="status">
+      <option value="todo">Todo</option>
+      <option value="in_progress">In progress</option>
+      <option value="done">Done</option>
+    </select>
+  </label>
+
+  <br />
+
+  <label>
+    Priority
+    <select formControlName="priority">
+      <option value="low">Low</option>
+      <option value="medium">Medium</option>
+      <option value="high">High</option>
+    </select>
+  </label>
+
+  <br /><br />
+
+  <button type="submit" [disabled]="form.invalid">Save</button>
+</form>

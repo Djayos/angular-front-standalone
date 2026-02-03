@@ -1,9 +1,10 @@
 <h1>Tasks</h1>
 
+<a routerLink="/tasks/new">+ New task</a>
+
 <ul *ngIf="tasks.length; else empty">
   <li *ngFor="let task of tasks">
-    <strong>{{ task.title }}</strong>
-    — {{ task.status }} — {{ task.priority }}
+    <a [routerLink]="['/tasks', task.id]">{{ task.title }}</a>
   </li>
 </ul>
 

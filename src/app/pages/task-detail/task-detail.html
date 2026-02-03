@@ -1,0 +1,24 @@
+<a routerLink="/tasks">← Back to tasks</a>
+
+<div *ngIf="task; else notFound">
+  <h1>{{ task.title }}</h1>
+
+  <p *ngIf="task.description; else noDesc">
+    {{ task.description }}
+  </p>
+  <ng-template #noDesc>
+    <p><em>No description</em></p>
+  </ng-template>
+
+  <p><strong>Status:</strong> {{ task.status }}</p>
+  <p><strong>Priority:</strong> {{ task.priority }}</p>
+
+  <p><strong>Created:</strong> {{ task.createdAt }}</p>
+  <p><strong>Updated:</strong> {{ task.updatedAt }}</p>
+</div>
+
+<ng-template #notFound>
+  <h1>Task not found</h1>
+  <p>This task does not exist.</p>
+  <a routerLink="/tasks">Go back to the list</a>
+</ng-template>

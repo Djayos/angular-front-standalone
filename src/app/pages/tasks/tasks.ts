@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TaskService } from '../../features/tasks/task';
 import { Task } from '../../features/tasks/task.model';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './tasks.html',
   styleUrl: './tasks.scss',
 })
