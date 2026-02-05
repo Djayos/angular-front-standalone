@@ -6,6 +6,19 @@ import { TaskService } from '../../features/tasks/task';
 import { ActivatedRoute } from '@angular/router';
 import { TaskPriority, TaskStatus } from '../../features/tasks/task.model';
 
+/**
+ * Composant responsable de la création et de l'édition des tâches.
+ * 
+ * Utilisation de Reactive Forms
+ *
+ * Entrée :
+ * - Paramètre d'URL "id" (optionnel) pour déterminer le mode édition
+ *
+ * Sortie :
+ * - Création ou mise à jour d'une tâche
+ * - Navigation vers la liste ou le détail après soumission
+ */
+
 
 @Component({
   selector: 'app-task-form',
@@ -14,6 +27,7 @@ import { TaskPriority, TaskStatus } from '../../features/tasks/task.model';
   templateUrl: './task-form.html',
   styleUrls: ['./task-form.scss'],
 })
+
 export class TaskFormComponent {
   form;
   taskId: string | null = null;
@@ -49,6 +63,7 @@ export class TaskFormComponent {
     }
   }
 
+  // soumission du formulaire : création ou mise à jour
   submit() {
     if (this.form.invalid) return;
 
